@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from markupsafe import Markup 
 import pickle
 import numpy as np
@@ -37,6 +37,6 @@ def get_iris():
         return render_template('index.html', prediction = pred_sentence)
 
 
-if __name__ == '__main__':
-    app.run(port = 8000, debug=True) # Start the server listening for requests
+# if __name__ == '__main__':
+#     app.run() # Start the server listening for requests
 
