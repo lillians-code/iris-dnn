@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from markupsafe import Markup 
-import pickle
+import joblib
 import numpy as np
 
 app = Flask(__name__) # invoke the Flask class
@@ -10,10 +10,9 @@ def get_iris():
     pred_names = ['Iris Setosa', 'Iris Versicolor', 'Iris Virginica']
     pred_label = ''
     filename = '/home/lillianzhang/iris-dnn/hosted/dnn_model.pkl'
-    file = open(filename, 'rb')
     
     # load model
-    model = pickle.load(file)
+    model = joblib.load(filename)
     
     iris_measurements = np.array([])
     if request.method == 'GET':
