@@ -9,7 +9,7 @@ app = Flask(__name__) # invoke the Flask class
 def get_iris():
     pred_names = ['Iris Setosa', 'Iris Versicolor', 'Iris Virginica']
     pred_label = ''
-    filename = '/home/lillianzhang/iris-dnn/hosted/dnn_model.pkl'
+    filename = 'dnn_model.pkl'
     with open(filename, 'rb') as file:
     
         # load model
