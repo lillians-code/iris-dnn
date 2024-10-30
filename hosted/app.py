@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from markupsafe import Markup 
-import pickle
 import numpy as np
+import pickle
 
 app = Flask(__name__) # invoke the Flask class
 
@@ -36,6 +36,6 @@ def get_iris():
         return render_template('index.html', prediction = pred_sentence)
 
 
-# if __name__ == '__main__':
-#     app.run() # Start the server listening for requests
+if __name__ == '__main__':
+    app.run() # Start the server listening for requests
 
