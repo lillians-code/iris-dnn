@@ -1,0 +1,76 @@
+/* style.css */
+
+/* Overall Aesthetic */
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Header Styling */
+  header h1 {
+    color: #2c3e50;
+  }
+  
+  /* Card Shadows and Borders */
+  .card {
+    border: none;
+    border-radius: 10px;
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background-color: #1abc9c;
+    border-color: #16a085;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #16a085;
+    border-color: #149174;
+  }
+  
+  /* Form Input Styling */
+  .form-control:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+  }
+  
+  /* Alert Styling */
+  .alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+  
+  /* Footer Styling */
+  footer small {
+    color: #95a5a6;
+  }
+  
+  /* Responsive Image */
+  .img-fluid {
+    border-radius: 10px;
+  }
+  
+  /* Input Group Icon Styling */
+  .input-group-text i {
+    color: #1abc9c; /* Primary color */
+    font-size: 1.2rem; /* Adjust size as needed */
+  }
+  
+  /* Additional Customizations */
+  .form-label {
+    font-weight: 500;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  
+    header h1 {
+      font-size: 1.25rem;
+    }
+  }
+  

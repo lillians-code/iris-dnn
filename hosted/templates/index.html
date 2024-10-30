@@ -1,30 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Iris prediction</title>
-  <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='iris.png')}}">
-    <!-- <link rel="stylesheet" href="style.css"> -->
-  </head>
-  <body>
-      <center>
-      <img src="{{url_for('static', filename='iris.jpg')}}" alt="Iris species"/>
-      <form action = "/" method = "post">
-         <p>Enter sepal length (cm) - typically 4.3cm-7.9cm:</p>
-         <p><input type = "float" name = "sl" /></p>
-         <p>Enter sepal width (cm) - typically 2cm-4.4cm:</p>
-         <p><input type = "float" name = "sw" /></p>
-         <p>Enter petal length (cm) - typically 1cm-6.9cm:</p>
-         <p><input type = "float" name = "pl" /></p>
-         <p>Enter petal width (cm) - typically 0.1cm-2.5cm:</p>
-         <p><input type = "float" name = "pw" /></p>
-         <p><input type = "submit" value = "submit" /></p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iris Prediction</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='iris.png') }}">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body class="bg-light">
 
-          {{prediction}}
-      </form>
-      </center>
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container py-3 d-flex align-items-center">
+      <img src="{{ url_for('static', filename='iris.png') }}" alt="Iris Logo" width="40" height="40" class="me-2">
+      <h1 class="h4 mb-0">Iris Prediction</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    
+    <!-- Iris Image Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='iris.jpg') }}" class="card-img-top img-fluid" alt="Iris species">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Prediction Form Section -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card p-4 shadow-sm">
+          <form action="/" method="post" novalidate>
+            <div class="row">
+            <div class="col-md-6">
+            <div class="mb-3">
+              <label for="sepalLength" class="form-label" data-bs-toggle="tooltip" data-bs-placement="right" title="Enter a value between 4.3 cm and 7.9 cm">Sepal Length (cm)</label>
+              <div class="input-group">
+                <!-- Updated Icon: Ruler -->
+                <span class="input-group-text"><i class="bi bi-rulers"></i></span>
+                <input type="number" step="0.1" min="4.3" max="7.9" class="form-control" id="sepalLength" name="sl" placeholder="4.3 - 7.9 cm" required>
+                <div class="invalid-feedback">
+                  Please enter a sepal length between 4.3 cm and 7.9 cm.
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="sepalWidth" class="form-label" data-bs-toggle="tooltip" data-bs-placement="right" title="Enter a value between 2.0 cm and 4.4 cm">Sepal Width (cm)</label>
+              <div class="input-group">
+                <!-- Updated Icon: Ruler -->
+                <span class="input-group-text"><i class="bi bi-rulers"></i></span>
+                <input type="number" step="0.1" min="2.0" max="4.4" class="form-control" id="sepalWidth" name="sw" placeholder="2.0 - 4.4 cm" required>
+                <div class="invalid-feedback">
+                  Please enter a sepal width between 2.0 cm and 4.4 cm.
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-6">
+            <div class="mb-3">
+              <label for="petalLength" class="form-label" data-bs-toggle="tooltip" data-bs-placement="right" title="Enter a value between 1.0 cm and 6.9 cm">Petal Length (cm)</label>
+              <div class="input-group">
+                <!-- Updated Icon: Ruler -->
+                <span class="input-group-text"><i class="bi bi-rulers"></i></span>
+                <input type="number" step="0.1" min="1.0" max="6.9" class="form-control" id="petalLength" name="pl" placeholder="1.0 - 6.9 cm" required>
+                <div class="invalid-feedback">
+                  Please enter a petal length between 1.0 cm and 6.9 cm.
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="petalWidth" class="form-label" data-bs-toggle="tooltip" data-bs-placement="right" title="Enter a value between 0.1 cm and 2.5 cm">Petal Width (cm)</label>
+              <div class="input-group">
+                <!-- Updated Icon: Ruler -->
+                <span class="input-group-text"><i class="bi bi-rulers"></i></span>
+                <input type="number" step="0.1" min="0.1" max="2.5" class="form-control" id="petalWidth" name="pw" placeholder="0.1 - 2.5 cm" required>
+                <div class="invalid-feedback">
+                  Please enter a petal width between 0.1 cm and 2.5 cm.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Predict Species</button>
+            </div>
+          </form>
           
-  </body>
+          <!-- Prediction Result (Displayed Only After Submission) -->
+          {% if prediction %}
+            <div class="mt-4">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Prediction:</strong> {{ prediction }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+  </main>
+
+  <!-- Optional Footer -->
+  <footer class="bg-white shadow-sm">
+    <div class="container py-3 text-center">
+      <small>&copy; 2024 Iris Prediction App. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS for Form Validation and Tooltips -->
+  <script>
+    // Form Validation
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('form')
+
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+
+    // Initialize Tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+</body>
 </html>
