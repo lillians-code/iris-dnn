@@ -71,4 +71,4 @@ def get_iris():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Start the server listening for requests
+    app.run()  # Start the server listening for requests
